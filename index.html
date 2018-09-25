@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Blank App</title>
+    <link href="jquery/jquery.mobile-1.4.5.min.css " rel="stylesheet " type="text/css " />
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet " type="text/css " />
+    <link href="bootstrap/bootstrap-theme.min.css" rel="stylesheet " type="text/css " />
+</head>
+
+<body>
+    <h1 class="text-center text-primary">Plugins Demo</h1>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <label style="font-size: 18px">Device Plugin</label>
+        </div>
+        <div class="col-xs-8">
+            <button class="btn btn-primary btn-block" style="font-size: 18px" onclick="openDevice()">get device info</button>
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <label style="font-size: 18px">Battery Plugin</label>
+        </div>
+        <div class="col-xs-8">
+            <button class="btn btn-danger btn-block" style="font-size: 18px" onclick="openBattery()">get Battery info</button>
+        </div>
+    </div>
+    <br /><br />
+
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <label style="font-size: 18px">Network Plugin</label>
+        </div>
+        <div class="col-xs-8">
+            <button class="btn btn-success btn-block" style="font-size: 18px" onclick="openNetwork()">get network info</button>
+        </div>
+    </div>
+    <br /><br />
+
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <label style="font-size: 18px">Contacts Plugin</label>
+        </div>
+        <div class="col-xs-8">
+            <button class="btn btn-info btn-block" style="font-size: 18px" onclick="openContacts()">get contacts info</button>
+        </div>
+    </div>
+
+
+    <br /><br />
+
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <label style="font-size: 18px">Sqlite Plugin</label>
+        </div>
+        <div class="col-xs-8">
+            <button class="btn btn-info btn-block" style="font-size: 18px"
+             onclick="openSqlite()">get sqlite info</button>
+        </div>
+    </div>
+
+    <script text="text/javascript">
+        function openDevice() {
+            window.location.href = "device.html";
+        }
+        function openBattery() {
+            window.location.href = "battery.html";
+        }
+        function openNetwork() {
+            window.location.href = "network.html";
+        }
+        function openContacts() {
+            window.location.href = "contacts.html";
+        }
+        function openSqlite() {
+            window.location.href = "sqlite.html";
+        }
+    </script>
+    <script type="text/javascript" src="cordova.js"></script>>
+    <script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DEMO</title>
+   @* <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css" />*@
+    @*<script src="jquery/jquery-1.12.4.min.js"></script>
+    <script src="jquery/jquery.mobile-1.4.5.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <title>DEMO</title>
+    <script type="text/javascript" charset="utf-8">
+
+        function LoginButton_onclick() {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "https://jsonplaceholder.typicode.com/users",
+                data: '{}',
+                success: function (msg) {
+                    //jsonArray = $.parseJSON(msg.d);
+                    //var $ul = $('<ul id="details">');
+                    //for (i = 0; i < jsonArray.length; i++) {
+                    //    $("#details").append('<li id="' + i + '" name="head" >' + jsonArray[i].name + '</li>');
+                    //}
+                    //$('#details').listview('refresh');
+                    $.each(msg, function (i,a) {
+                        $("#details").append('<li>' + a.name+ '</li>');
+                    });
+                },
+                error: function (msg) {
+                    alert("Error");
+                }
+            });
+
+        }
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="Page1"> 
+        <h1>DEMO PAGE</h1>
+
+        <div id="DEMO">
+            <input id="LoginButton" type="button" value="GET DATA" 
+            onclick="LoginButton_onclick()" />
+        </div>
+
+        <div id="divList" data-role="content">
+            <ul id="details" data-role="listview" data-inset="true"></ul>
+        </div>
+
+    </div>
+</body>
+
+</html>

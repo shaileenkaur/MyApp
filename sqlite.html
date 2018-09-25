@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Blank App</title>
+    <link href="jquery/jquery.mobile-1.4.5.min.css " rel="stylesheet " type="text/css " />
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet " type="text/css " />
+    <link href="bootstrap/bootstrap-theme.min.css" rel="stylesheet " type="text/css " />
+</head>
+
+<body>
+
+    <h1>Sqlite demo</h1>
+    <hr>
+    <input type="text" id="uname" placeholder="Please enter name" class="form-control" /> <br />
+    <input type="num" id="uid" placeholder="Please provide id of user to delete" class="form-control" /><br />
+    <button class="btn btn-primary" onClick="insertData()"> Insert</button>
+    <button class="btn btn-success" onClick="viewData()"> View</button>
+    <button class="btn btn-danger" onClick="deleteData()"> Delete</button><br />
+    <br />
+    <br />
+    <textarea id="textarea" class="form-control"></textarea><br />
+
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            var db = window.openDatabase("DummyDB", "1.0", "Testing", 200000);
+            db.transaction(populateDB, onDBError, onDBSuccess);
+        }
+
+
+
+        function populateDB(tx) {
+            tx.executeSql('create table if not exists demo (id integer primary key autoincrement, name text)');
+        }
+
+        function insertData() {
+            var db = window.openDatabase("DummyDB", "1.0", "Testing", 200000);
+            db.transaction(insertDB, onDBError, onDBSuccess);
+        }
+
+        function insertDB(tx) {
+            var user_name = document.getElementById("uname").value;
+
+            tx.executeSql("insert into demo (name) values ('" + user_name + "')");
+        }
+
+        function viewData() {
+            var db = window.openDatabase("DummyDB", "1.0", "Testing", 200000);
+            db.transaction(loadData, onDBError, onDBSuccess);
+        }
+
+        function loadData(tx) {
+            tx.executeSql('select * from demo', [], onQuerySuccess, onDBError);
+        }
+
+        function onQuerySuccess(tx, results) {
+            var count = results.rows.length;
+
+            for (var i = 0; i < count; i++) {
+                var u_id = results.rows.item(i).id;
+                var u_name = results.rows.item(i).name;
+
+                var txtArea = document.getElementById('textarea');
+                txtArea.innerHTML += 'ID: ' + u_id + ' and name: ' + u_name + '<br />';
+
+                alert("ID: " + u_id + ' and name: ' + u_name);
+
+            }
+        }
+        function deleteData() {
+            var db = window.openDatabase("DummyDB", "1.0", "Testing", 200000);
+            db.transaction(deleteRec, onDBError, onDBSuccess)
+        }
+
+        function deleteRec(tx) {
+            var user_nme = document.getElementById("uname").value;
+
+            tx.executeSql("delete from demo where name = '" + user_nme + "'");
+
+        }
+
+        function onDBError(error) {
+            alert("Error executing the command: " + error.code + "and message: " + error.message);
+        }
+
+        function onDBSuccess() {
+            alert("Transaction completed successfully");
+        }
+
+
+
+
+
+
+    </script>
+
+    <script type="text/javascript" src="cordova.js"></script>>
+    <script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>
